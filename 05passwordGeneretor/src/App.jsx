@@ -14,8 +14,6 @@ export default function App() {
   const passRef = useRef(password);
 
 
-
-
   const copyToClipBoard = useCallback(() => {
     passRef.current?.select();
     window.navigator.clipboard.writeText(password);
@@ -49,9 +47,6 @@ export default function App() {
     generatePassword()
 
   }, [length, numbersAllowed, charsAllowed])
-
-
-
 
 
   return (
