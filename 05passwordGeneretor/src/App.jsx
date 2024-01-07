@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useCallback } from "react";
 import { useEffect } from "react";
 import { useState } from "react"
 
@@ -13,13 +14,15 @@ export default function App() {
   const passRef = useRef(password);
 
 
-  function copyToClipBoard() {
+
+
+  const copyToClipBoard = useCallback(() => {
     passRef.current?.select();
     window.navigator.clipboard.writeText(password);
-  }
+  }, [password])
 
 
-  function generatePassword() {
+  const generatePassword = useCallback(() => {
     let pass = "";
     let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
@@ -37,9 +40,9 @@ export default function App() {
       let random = Math.floor(Math.random() * chars.length + 1)
       pass = pass + chars.charAt(random);
     }
-
     setPassword(pass);
-  }
+
+  }, [length, numbersAllowed, charsAllowed, setPassword])
 
   useEffect(() => {
 
